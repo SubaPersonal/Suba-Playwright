@@ -1,0 +1,331 @@
+
+project:
+  name: Playwright Automation Project
+  tool: Playwright
+  language: TypeScript
+
+
+// Typerscript : 
+***************
+What is TypeScript?
+===================
+- TypeScript is a superset of JavaScript developed by Microsoft. 
+- TypeScript is static type used to catch errors during development.
+- It is help to developers write more reliable and maintainable code.
+- TypeScript code is compiled into JavaScript before execution.
+- Remember: JavaScript can run directly, but TypeScript is converted to JavaScript before execution.
+
+Ex
+--
+let name: string = "Suba";
+let age = 30;
+
+How do you compile and execute TypeScript?
+============================================
+tsc filename.ts
+node filename.js
+
+Compile TypeScript  ==> tsc filename.ts
+Execute JavaScript  ==> node filename.js
+
+Ex : 
+--
+filename : example.ts
+compile:  tsc example.ts  // after compile the typescript file as  example.ts convert into  javascript as  example.js 
+
+execute : node example.js
+
+
+Why do we use TypeScript?
+=========================
+We use TypeScript to get type safety, catch errors earlier, 
+improve code readability and maintainability, and get better IDE support such as autocomplete and IntelliSense.
+
+
+Note : 
+------
+👉 Autocomplete = suggestions only
+👉 IntelliSense = autocomplete + extra coding help
+
+Autocomplete and IntelliSense are IDE features available in Java, JavaScript, and TypeScript.
+TypeScript provides better type-based suggestions and error detection because it has static typing.
+
+Autocomplete
+--------------
+Autocomplete is one feature inside IntelliSense.
+Autocomplete simply suggests how to complete what you are typing.
+
+IntelliSense
+--------------
+IntelliSense is a smart helper in the code editor. 
+It gives autocomplete and other helpful information like data types, function parameters, and errors.
+
+comparison of Autocomplete and IntelliSense
+-----------------------------------------------
+
+-------------------------------------------------------------------------------------------------------------
+Autocomplete	                                 |                  IntelliSense                                
+-------------------------------------------------------------------------------------------------------------                                          
+Suggests code completion	                     |      Complete smart coding assistance
+Helps you type faster	                         |     Helps you understand and write code
+Example: suggests name when you type nam	     |     Shows suggestions, types, parameters, and errors
+Part of IntelliSense	                         |      Contains autocomplete and other features
+--------------------------------------------------------------------------------------------------------------
+
+What is the difference between JavaScript and TypeScript? 
+=========================================================
+-----------------------------------------------------------------------------------------------
+JavaScript	                             |            TypeScript
+-----------------------------------------------------------------------------------------------                     
+Dynamically typed	                     |      Supports static typing  
+Errors may appear at runtime	         |      Many errors can be caught during development
+Runs directly in browser/Node.js	     |      Usually transpiled to JavaScript
+Less strict	                             |      Can provide stronger type checking
+--------------------------------------------------------------------------------------------
+
+
+What is let in TypeScript?
+=========================
+let is a keyword used to declare a variable. You use it when the value of the variable may change later.
+
+Syntax
+------
+let variableName = value;
+
+point to remember
+-----------------
+let → value can change or value can be reassigned.
+const → variable cannot be reassigned
+
+What is type annotation?
+=========================
+A type annotation is a way to explicitly declare the data type of a variable, 
+function parameter, or return value in TypeScript using a colon (:).
+
+EX: 
+--
+let name: string = "Suba";
+Breakdown:
+----------
+name       → variable name
+:          → type annotation symbol
+string     → data type
+"Suba"     → value
+
+let name: string = "Suba";
+         ↑
+   Type Annotation
+
+
+
+
+What is explicit typing in TypeScript?
+=======================================
+Explicit typing means the developer manually specifies the data type using a type annotation as colon (:).
+
+Ex
+--
+let name: string = "Suba";
+
+// Here, : string is the type annotation.
+
+
+What is implicit typing or type inference?        //note noth are not exactly same, both are closely related
+============================================
+Implicit typing means the developer does not manually specify the type. 
+TypeScript automatically determines the type based on the assigned value. This automatic process is called type inference.
+
+EX
+---
+let name = "Suba";   //here did not write : string.
+
+Type inference
+TypeScript automatically figures out the type.
+let name = "Suba";
+           ↓
+TypeScript sees "Suba"
+           ↓
+TypeScript infers → string // typeScript automatically determines the type based on the assigned value 
+
+
+What is Dot Notation?
+=====================
+
+Dot notation is used to access an object's properties or methods using the dot (.) operator.
+
+Ex
+--
+let user = {
+    name: "Suba",
+    age: 25
+};
+
+console.log(user.name);
+console.log(user.age);
+
+user.name
+  ↑    ↑
+Object . Property
+Here:
+- user → object name
+- . → dot notation
+- name → property
+
+Object literal
+==============
+An object literal in TypeScript is an object created using curly braces {} containing properties and their values.
+
+Syntax
+------
+
+let objectName = {
+    property1: value1,
+    property2: value2
+};
+
+
+
+Example of Object literal implict
+----------------------------------
+file name: typescriptobjectliteral.ts
+
+let customer = {
+    firstname:'suba',
+    lastname:'lakshmi',
+    gender:'Female',
+    accountisActive:true,
+    email:'kssuba@gmail.com'
+}
+console.log(customer.firstname +customer.lastname)
+console.log(customer.gender)
+console.log(customer.accountisActive)
+console.log(customer.email)
+
+Ouput
+-----
+C:\Playwright Project\tests\Typescript>tsc typescriptobjectliteral.ts
+
+C:\Playwright Project\tests\Typescript>node typescriptobjectliteral.js
+subalakshmi
+Female
+true
+kssuba@gmail.com
+
+C:\Playwright Project\tests\Typescript>
+
+
+Example of Object literal implict
+----------------------------------
+
+.......
+......
+......
+.........
+
+
+*
+*
+*
+.
+.need to continue
+
+Alrets
+******
+what is optional parameter?
+=============================
+An optional parameter is a parameter that is not mandatory when calling a function. 
+In TypeScript, we use the ? symbol to define it.
+
+Easy rule 
+--------
+Required information → normal parameter
+Not always required → optional parameter (?)
+
+Syntax of optional parameter
+---------------------------------
+function functionName(parameterName?: dataType) {  //The ? means the parameter is optional.
+    // code
+}
+
+Ex
+--
+// file name : optionalparameter.spec.ts
+import test from "@playwright/test";
+
+test('Optional Paramter', async({page})=>{
+    function location(city?:string){
+    console.log(city)
+    }
+   
+    location()
+    location("Bangalore")
+    location("chennai")  // Why does "chennai" show an error? because declared only bangalore
+    // function location(city?:string) -- we can use as string type - "chennai" will execute
+    //function location(city?:"Bangalore")--Why does "chennai" show an error? because declared only bangalore
+})
+/* output
+    C:\Playwright Project\tests\Playwright Class>npx playwright test optionalparameter.spec.ts
+
+Running 1 test using 1 worker
+
+  ✓  1 optionalparameter.spec.ts:3:5 › Optional Paramter (76ms)
+undefined
+Bangalore
+chennai
+
+  1 passed (615ms)
+
+C:\Playwright Project\tests\Playwright Class>
+*/
+
+/* 
+//function location(city?:"Bangalore")
+//  location("chennai") --Why does "chennai" show an error? because declared only bangalore
+
+
+C:\Playwright Project\tests\Playwright Class>npx playwright test optionalparameter.spec.ts
+
+Running 1 test using 1 worker
+
+  ✓  1 optionalparameter.spec.ts:3:5 › Optional Paramter (73ms)
+undefined
+Bangalore
+
+  1 passed (617ms)
+  */
+
+
+
+what is Alerts /Dialogs?
+what is alrets in playwright?
+how do we handle the alrets?
+why do we need to handle?
+Different types of alrets?
+what is model alrets?
+what is non model alrets?
+DB model and non model alrets?
+what is simple alrets?
+what is combinational alrets?
+what is prompt alrets?
+DB simple vs combinational vs prompt alrets?
+without events listner can we handle alrets?
+what is Event Listeners?
+what is page.once()?
+what is page.on()
+
+
+----------------------------------------
+Frames
+======
+what is Frame?
+types of frame?
+what are the ways do we find frame?
+what are the ways to handle iFrame?
+what is index based?
+waht is FrameLocator?
+what isFrameObject?
+what is Optional chaining (?.)
+methods()?
+page.frames()?
+page.frame({ name | url })?
+page.frameLocator(selector)?
